@@ -1,0 +1,72 @@
+Lillo Marco Angelo
+Matricola: 717683
+
+INTRODUZIONE ALLA MACCHINA:
+La macchina di turing a 4 nastri effettua il seguente calcolo:
+
+|A−B|+|A−C|=D con A,B,C e D quattro numeri naturali in notazione binaria.
+
+La stringa di input viene scritta sul primo nastro nel seguente modo:
+M(A,B,C,D)=
+
+Come output avremo:
+M(A,B,C,D)=risultato
+
+Dove 'risultato' può essere:
+- 1 se |A-B|+|A-C|=D;
+- 2 altrimenti.
+
+COMPORTAMENTO DELLA MACCHINA:
+La macchina lavora nel seguente modo:
+
+Vengono copiati i numeri A e B sui nastri 2 e 3 rispettivamente. Successivamente vengono effettuate le seguenti operazioni:
+- se A è minore di B, vengono scambiati(cioè il contenuto del secondo nastro viene scambiato con quello del terzo, e viceversa);
+- altrimenti la macchina è pronta ad effettuare la sottrazione tra A e B;
+- viene calcolata la sottrazione |A-B| .Il risultato viene salvato sul nastro 4, e nel frattempo vengono puliti i nastri 2 e 3 , in maniera tale da effettuare in seguito |A-C|;
+Dopo aver terminato il calcolo di |A-B| vengono copiati A e C sui nastri 2 e 3 rispettivamente e successivamente:
+- se A è minore di C, vengono scambiati(cioè il contenuto del secondo nastro viene scambiato con quello del terzo, e viceversa);
+- viene calcolata la sottrazione |A-C|. Il risultato viene salvato nel nastro 3;
+Dopo aver terminato il calcolo di |A-C| vengono sommati i due risultati ottenuti ,cioè |A-B|+|A-C|, e viene effettuato il confronto con D:
+- viene sommato il contenuto del nastro 3 con il contenuto del nastro 4, e il risultato
+viene salvato sul nastro 4;
+- se il contenuto del nastro 4 inizia con degli '0', vengono cancellati finchè non trova un '1';
+
+	Esempio: Input: M(101,110,100,10)=
+		Dopo aver effettuato |A-B|+|A-C| avremo sul 4 nastro '010'
+- viene confrontato il risultato ottenuto con il numero D.
+Il modulo viene eseguito come segue: viene ripetuto il confronto dei caratteri più a sinistra dei due numeri. Se il primo numero è più grande in lunghezza del secondo, sappiamo già che è maggiore, quindi la macchina si prepara ad effettuare la sottrazione; se il secondo numero è più grande in lunghezza del primo sappiamo già che è minore, quindi si procede con lo scambio; se i due numeri hanno la stessa lunghezza, si procede con il confronto carattere per carattere. 
+
+DESCRIZIONE STATO PER STATO:
+- lo stato iniziale q0 e lo stato q1 ricopiano A e B sui nastri 2 e 3 rispettivamente, per poi posizionarsi sui primi caratteri più a sinistra;
+- lo stato q3 scorre tutti i caratteri dei nastri 2 e 3 a destra e si possono verificare 3 casi:
+	1)A è più grande in lunghezza di B (cioè sul nastro 2 viene letto un carattere, mentre sul nastro 3 viene letto un blank). A questo punto si passa allo stato q8 che si posizionerà sui caratteri più a destra di A e B e calcolerà la sottrazione binaria
+	
+	2)B è più grande in lunghezza di A (cioè sul nastro 3 viene letto un carattere, mentre sul nastro 2 viene letto un blank). A questo punto si passa allo stato q7 che si posizionerà  sui caratteri più a sinistra di A e B ed effettuerà lo scambio. Successivamente si passa allo stato q8 che calcolerà la sottrazione binaria B-A.
+	
+	3)A e B hanno la stessa lunghezza, quindi bisogna confrontare i due numeri carattere per carattere. Dallo stato q6 inizia il ciclo del confronto: se sul secondo nastro legge '0' e sul terzo legge '1', significa che B è più grande di A; perciò si passa allo stato q7 che effettuerà lo scambio. Se sul secondo nastro legge '1' e sul terzo legge '0' (oppure finisce il contenuto dei nastri 2 e 3) sappiamo che A è più grande di B, quindi si passa allo stato q8 che calcolerà la sottrazione binaria A-B
+
+Il risultato della sottrazione binaria |A-B| viene salvato sul nastro 4;
+
+- lo stato q11 indica lo stato del riporto. Il riporto termina quando sui nastri 2 e 3 vengono letti '1' e '0' rispettivamente, oppure '1' e blank. Durante la sottrazione, inoltre, vengono puliti i nastri 2 e 3, in maniera tale da utilizzarli successivamente per il calcolo |A-C|;
+
+- lo stato q14 copia A sul secondo nastro, mentre lo stato q17 copia C sul nastro 3
+
+-lo stato q21 effettua la sottrazione binaria |A-C| rispettando le stesse regole precedenti.
+
+-lo stato q29 effettua la somma binaria tra il contenuto del nastro 3 con quello del nastro 4(cioè |A-B|+|A-C|)
+-lo stato q32 effettua il confronto del nastro 4 con D e scrive sul nastro 1 ,dopo il carattere '=', 1 se il confronto va a buon fine, 2 altrimenti.
+
+
+COMPLESSITA':
+La macchina impiega n/2 passi per ricopiare ogni volta il contenuto di ogni numero su un nastro.
+Impiega n passi per effettuare la sottrazione, n passi per effettuare la somma ed n passi per effettuare il modulo.
+Sommando le complessità di ogni operazione otteniamo che la complessità della macchina è o(5n+1). Sommiamo 1 perchè impiega in passo per scrivere il risultato dopo l'uguale. Cancelliamo le costanti quindi la complessità è o(n).
+
+
+
+
+
+
+
+
+
