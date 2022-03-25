@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--Created with JFLAP 7.1.--><structure>&#13;
+	<type>turing</type>&#13;
+	<automaton>&#13;
+		<!--The list of states.-->&#13;
+		<state id="0" name="q0">&#13;
+			<x>78.0</x>&#13;
+			<y>148.0</y>&#13;
+			<initial/>&#13;
+		</state>&#13;
+		<state id="1" name="q1">&#13;
+			<x>193.0</x>&#13;
+			<y>149.0</y>&#13;
+		</state>&#13;
+		<state id="2" name="q2">&#13;
+			<x>320.0</x>&#13;
+			<y>153.0</y>&#13;
+		</state>&#13;
+		<state id="3" name="q3">&#13;
+			<x>199.0</x>&#13;
+			<y>268.0</y>&#13;
+		</state>&#13;
+		<state id="4" name="q4">&#13;
+			<x>357.0</x>&#13;
+			<y>328.0</y>&#13;
+		</state>&#13;
+		<state id="5" name="q5">&#13;
+			<x>86.0</x>&#13;
+			<y>339.0</y>&#13;
+			<final/>&#13;
+		</state>&#13;
+		<!--The list of transitions.-->&#13;
+		<transition>&#13;
+			<from>4</from>&#13;
+			<to>5</to>&#13;
+			<read/>&#13;
+			<write/>&#13;
+			<move>L</move>&#13;
+		</transition>&#13;
+		<transition>&#13;
+			<from>1</from>&#13;
+			<to>2</to>&#13;
+			<controlx>260</controlx>&#13;
+			<controly>133</controly>&#13;
+			<read>b</read>&#13;
+			<write>y</write>&#13;
+			<move>L</move>&#13;
+		</transition>&#13;
+		<transition>&#13;
+			<from>2</from>&#13;
+			<to>0</to>&#13;
+			<controlx>195</controlx>&#13;
+			<controly>245</controly>&#13;
+			<read>x</read>&#13;
+			<write>x</write>&#13;
+			<move>R</move>&#13;
+		</transition>&#13;
+		<transition>&#13;
+			<from>0</from>&#13;
+			<to>1</to>&#13;
+			<controlx>140</controlx>&#13;
+			<controly>121</controly>&#13;
+			<read>a</read>&#13;
+			<write>x</write>&#13;
+			<move>R</move>&#13;
+		</transition>&#13;
+		<transition>&#13;
+			<from>0</from>&#13;
+			<to>3</to>&#13;
+			<read>y</read>&#13;
+			<write>y</write>&#13;
+			<move>L</move>&#13;
+		</transition>&#13;
+		<transition>&#13;
+			<from>2</from>&#13;
+			<to>2</to>&#13;
+			<read>y</read>&#13;
+			<write>y</write>&#13;
+			<move>L</move>&#13;
+		</transition>&#13;
+		<transition>&#13;
+			<from>2</from>&#13;
+			<to>2</to>&#13;
+			<read>a</read>&#13;
+			<write>a</write>&#13;
+			<move>L</move>&#13;
+		</transition>&#13;
+		<transition>&#13;
+			<from>3</from>&#13;
+			<to>3</to>&#13;
+			<controlx>219</controlx>&#13;
+			<controly>221</controly>&#13;
+			<read>x</read>&#13;
+			<write>x</write>&#13;
+			<move>L</move>&#13;
+		</transition>&#13;
+		<transition>&#13;
+			<from>1</from>&#13;
+			<to>1</to>&#13;
+			<read>a</read>&#13;
+			<write>a</write>&#13;
+			<move>R</move>&#13;
+		</transition>&#13;
+		<transition>&#13;
+			<from>1</from>&#13;
+			<to>1</to>&#13;
+			<read>y</read>&#13;
+			<write>y</write>&#13;
+			<move>R</move>&#13;
+		</transition>&#13;
+		<transition>&#13;
+			<from>4</from>&#13;
+			<to>4</to>&#13;
+			<read>x</read>&#13;
+			<write>x</write>&#13;
+			<move>R</move>&#13;
+		</transition>&#13;
+		<transition>&#13;
+			<from>4</from>&#13;
+			<to>4</to>&#13;
+			<read>y</read>&#13;
+			<write>y</write>&#13;
+			<move>R</move>&#13;
+		</transition>&#13;
+		<transition>&#13;
+			<from>3</from>&#13;
+			<to>4</to>&#13;
+			<read/>&#13;
+			<write/>&#13;
+			<move>R</move>&#13;
+		</transition>&#13;
+		<transition>&#13;
+			<from>0</from>&#13;
+			<to>5</to>&#13;
+			<read/>&#13;
+			<write/>&#13;
+			<move>S</move>&#13;
+		</transition>&#13;
+		<note>&#13;
+			<text>Macchina che riconosce le parole del linguaggio a^nb^n con n&gt;=0
+
+Input: {a,b}*
+
+Comportamento della macchina:
+Dallo stato q0 trasforma la prima 'a' in' x' e va a destra, altrimenti legge il blank
+come primo carattere e accetta la stringa. Le' x' stanno ad indicare le 'a' e le' y' indicano 
+le 'b'.
+
+Dallo stato q1 si scorrono a destra tutte le 'a' o le' y' e se viene letta una' b' la trasforma in 'y',
+scorre a  sinistra e va nello stato q2.
+Dallo stato q2 se vengono letti i caratteri 'a' e' y', scorre a sinistra fin quando non trova una 'x'
+e scorre a destra tornando nello stato q0.
+Quando non trova più nessuna 'a', la macchina va nello stato q3 dove si posiziona all'inizio
+della stringa scorrendo tutte le 'x' e 'y'.
+Dallo stato q4 si scorrono a destra tutti i caratteri 'x' e 'y' fino a quando non viene trovato il simbolo
+blank andando nello stato di accettazione q5.
+
+Se la macchina dopo aver fatto scorrere tutte le 'x' e 'y' non trova il blank allora rigetta la parola.</text>&#13;
+			<x>406.0</x>&#13;
+			<y>217.0</y>&#13;
+		</note>&#13;
+	</automaton>&#13;
+</structure>

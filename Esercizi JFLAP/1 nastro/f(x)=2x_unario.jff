@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--Created with JFLAP 7.1.--><structure>&#13;
+	<type>turing</type>&#13;
+	<automaton>&#13;
+		<!--The list of states.-->&#13;
+		<state id="0" name="q0">&#13;
+			<x>109.0</x>&#13;
+			<y>233.0</y>&#13;
+			<initial/>&#13;
+		</state>&#13;
+		<state id="1" name="q1">&#13;
+			<x>277.0</x>&#13;
+			<y>232.0</y>&#13;
+		</state>&#13;
+		<state id="2" name="q2">&#13;
+			<x>433.0</x>&#13;
+			<y>237.0</y>&#13;
+		</state>&#13;
+		<state id="3" name="q3">&#13;
+			<x>226.0</x>&#13;
+			<y>396.0</y>&#13;
+			<final/>&#13;
+		</state>&#13;
+		<!--The list of transitions.-->&#13;
+		<transition>&#13;
+			<from>2</from>&#13;
+			<to>1</to>&#13;
+			<read/>&#13;
+			<write>1</write>&#13;
+			<move>L</move>&#13;
+		</transition>&#13;
+		<transition>&#13;
+			<from>2</from>&#13;
+			<to>2</to>&#13;
+			<read>1</read>&#13;
+			<write>1</write>&#13;
+			<move>R</move>&#13;
+		</transition>&#13;
+		<transition>&#13;
+			<from>0</from>&#13;
+			<to>1</to>&#13;
+			<read/>&#13;
+			<write/>&#13;
+			<move>L</move>&#13;
+		</transition>&#13;
+		<transition>&#13;
+			<from>0</from>&#13;
+			<to>0</to>&#13;
+			<read>1</read>&#13;
+			<write>$</write>&#13;
+			<move>R</move>&#13;
+		</transition>&#13;
+		<transition>&#13;
+			<from>1</from>&#13;
+			<to>3</to>&#13;
+			<read/>&#13;
+			<write/>&#13;
+			<move>S</move>&#13;
+		</transition>&#13;
+		<transition>&#13;
+			<from>1</from>&#13;
+			<to>2</to>&#13;
+			<read>$</read>&#13;
+			<write>1</write>&#13;
+			<move>R</move>&#13;
+		</transition>&#13;
+		<transition>&#13;
+			<from>1</from>&#13;
+			<to>1</to>&#13;
+			<read>1</read>&#13;
+			<write>1</write>&#13;
+			<move>L</move>&#13;
+		</transition>&#13;
+		<note>&#13;
+			<text>Macchina di turing a singolo nastro che raddoppia il numero di elementi: 
+f(x) -&gt; 2x
+Input: {1}* Alfabeto unario
+
+Comportamento della macchina:
+Dallo stato q0 trasforma tutti gli '1' in '$' e si sposta a destra alla fine del nastro.
+Il primo '$' più a destra viene sostituito con 1 e successivamente si scorre a destra fino a che
+non viene letto il carattere blank, andando così nello stato q2.
+Dallo stato q2 si scrive '1' nel primo carattere blank a destra.
+Successivamente si scorrono a sinistra tutti gli '1' e se non viene trovato più il carattere '$' la macchina va
+nello stato di accettazione q3.
+</text>&#13;
+			<x>391.0</x>&#13;
+			<y>319.0</y>&#13;
+		</note>&#13;
+	</automaton>&#13;
+</structure>
