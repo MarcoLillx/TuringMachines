@@ -1,6 +1,3 @@
-Lillo Marco Angelo
-Matricola: 717683
-
 INTRODUZIONE ALLA MACCHINA:
 La macchina di turing a 4 nastri effettua il seguente calcolo:
 
